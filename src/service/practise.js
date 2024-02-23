@@ -8,14 +8,22 @@ function generateRandom(n) {
 }
 
 function getFileData() {
-	// const data = fs.readFileSync("tex", "utf-8");
-	fs.readFile("../abc.txt", (err, data) => {
-		if (err) {
-			console.log("err->", err);
-		} else console.log("data-->", data.toString());
-	});
-	// console.log("Data-->", data);
+	const data = fs.readFileSync(__dirname + "/abc.txt", "utf-8");
+	// fs.readFile(__dirname + "/abc.txt", (err, data) => {
+	// 	if (err) {
+	// 		console.log("err->", err);
+	// 	} else console.log("data-->", data.toString());
+	// });
+	console.log("Data-->", data);
 	return "good";
 }
 
+function getFileDataInChunks() {
+	const stream = fs.createReadStream(__dirname + "/abc.txt", "utf-8");
+	stream.on("data", (chunk) => res.write(chunk));
+	stream.on("end", () => res.end());
+
+	console.log("Data-->", data);
+	return "good";
+}
 module.exports = { generateRandom, getFileData };
