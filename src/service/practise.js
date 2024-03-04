@@ -18,12 +18,9 @@ function getFileData() {
 	return "good";
 }
 
-function getFileDataInChunks() {
+function getFileDataInChunks(res) {
 	const stream = fs.createReadStream(__dirname + "/abc.txt", "utf-8");
 	stream.on("data", (chunk) => res.write(chunk));
 	stream.on("end", () => res.end());
-
-	console.log("Data-->", data);
-	return "good";
 }
-module.exports = { generateRandom, getFileData };
+module.exports = { generateRandom, getFileData, getFileDataInChunks };
